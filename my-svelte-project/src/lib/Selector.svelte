@@ -18,13 +18,7 @@
         slotDuration: '00:15',
         editable: true,
         events: [
-            {
-                id: 1,
-                title: 'vefhhugvh',
-                start: now,
-                end: new Date(now.getTime() + 10000000)
-            }
-            // your list of events
+            // events added here using handleDateTimeClick()
         ]
     };
 
