@@ -9,8 +9,13 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^2.0.2",
+    "@event-calendar/core": "^0.17.0",
+    "@event-calendar/time-grid": "^0.17.0",
+    "@sveltejs/vite-plugin-svelte": "^2.0.3",
     "svelte": "^3.55.1",
     "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "@event-calendar/interaction": "^0.17.0"
   }
 }
