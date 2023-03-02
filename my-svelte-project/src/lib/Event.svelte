@@ -3,11 +3,19 @@
     let notes = ""
     import { Button } from "carbon-components-svelte";
 
+    export let eventObj
+    export let addEvent
+    let startTime = eventObj.start.toTimeString()
+    let endTime = eventObj.end.toTimeString()
+    let date = eventObj.start.getDate()
+    let show = true
+
 </script>
 
 <main>
+    {#if show}
     <div id="eventbox"> 
-        [Date] from [startTime] to [endTime]<br>
+        {date} from {startTime} to {endTime}<br>
         {name} 
         <div class="grid-container">
             <div class="grid-child purple">
@@ -18,10 +26,12 @@
                 notes? <input bind:value={notes}>
             </div>
             <div class="grid-child green">
-                <Button>delete</Button>
+                <Button on:click={() => {addEvent(eventObj); show = false}}>Done</Button>
+                <Button>Delete</Button>
             </div>
         </div>
     </div>
+    {/if}
 </main>
 
 <style>

@@ -16,6 +16,7 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
-    "@event-calendar/interaction": "^0.17.0"
+    "@event-calendar/interaction": "^0.17.0",
+    "carbon-components-svelte": "^0.73.2"
   }
 }

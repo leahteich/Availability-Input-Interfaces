@@ -6,8 +6,18 @@
     import Interaction from '@event-calendar/interaction'
     import '@event-calendar/core/index.css';
 
-    let idCount = 0;
+    export let summonToolbar
+    export const addEvent = (eventInfo) => {
+        idCount += 1
+        ec.addEvent({
+            id: idCount,
+            title: eventInfo.title,
+            start: eventInfo.start,
+            end: eventInfo.end,
+        })
+    }
 
+    let idCount = 0;
     let ec;
     let plugins = [TimeGrid, Interaction];
     let options = {
@@ -19,23 +29,15 @@
         editable: true,
         dayMaxEvents: true,
         firstDay: 1,
+        eventClick: (info) => {eventClick(info)},
         events: [
             // events added here using handleDateTimeClick()
         ],
         selectable: true,
-        select: (info) => {handleSelection(info)},
+        select: (info) => {summonToolbar({event: info})},
     };
 
-    const handleSelection = (selection) => {
-            ec.addEvent({
-                id: idCount,
-                title: 'Available virtually',
-                start: selection.start,
-                end: selection.end,
-            })
-            idCount += 1
-            
-        }
+
 </script>
 
 <Calendar bind:this={ec} {plugins} {options} />
