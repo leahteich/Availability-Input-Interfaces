@@ -29,6 +29,7 @@
         editable: true,
         dayMaxEvents: true,
         firstDay: 1,
+        unselectAuto: false,
         eventClick: (info) => {eventClick(info)},
         events: [
             // events added here using addEvent(), called from Event.svelte
