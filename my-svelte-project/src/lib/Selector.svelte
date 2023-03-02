@@ -1,45 +1,41 @@
 <script>
+// @ts-nocheck
+
     import Calendar from '@event-calendar/core';
     import TimeGrid from '@event-calendar/time-grid';
     import Interaction from '@event-calendar/interaction'
     import '@event-calendar/core/index.css';
 
-    const now = new Date()
-    let newStart = null;
-    let newEnd = null;
     let idCount = 0;
 
     let ec;
     let plugins = [TimeGrid, Interaction];
     let options = {
-        eventDragStart: () => {console.log('UR DRAGGING')},
-        dateClick: ({date: dateTime}) => {handleDateTimeClick(dateTime)},
+        allDaySlot: false,
+        eventDragStart: (info) => {console.log(info.view)},
+        headerToolbar: {start: 'title', center: '', end: ''},
         view: 'timeGridWeek',
         slotDuration: '00:15',
         editable: true,
+        dayMaxEvents: true,
+        firstDay: 1,
         events: [
             // events added here using handleDateTimeClick()
-        ]
+        ],
+        selectable: true,
+        select: (info) => {handleSelection(info)},
     };
 
-    const handleDateTimeClick = (time) => {
-        if (!newStart) {
-            newStart = time
-        } else if (!newEnd) {
-            newEnd = new Date(time.getTime() + 900000)
+    const handleSelection = (selection) => {
             ec.addEvent({
                 id: idCount,
-                title: '',
-                start: newStart,
-                end: newEnd,
+                title: 'Available virtually',
+                start: selection.start,
+                end: selection.end,
             })
             idCount += 1
-            newStart = null
-            newEnd = null
+            
         }
-        console.log(newStart, newEnd)
-    }
-
 </script>
 
 <Calendar bind:this={ec} {plugins} {options} />
