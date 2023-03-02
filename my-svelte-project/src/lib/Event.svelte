@@ -5,9 +5,9 @@
 
     export let eventObj
     export let addEvent
-    let startTime = eventObj.start.toTimeString()
-    let endTime = eventObj.end.toTimeString()
-    let date = eventObj.start.getDate()
+    let startTime = eventObj.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+    let endTime = eventObj.end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+    let date = eventObj.start.toLocaleString('default', { month: 'long' }) + ' ' + eventObj.start.getDate()
     let show = true
 
 </script>

@@ -31,7 +31,7 @@
         firstDay: 1,
         eventClick: (info) => {eventClick(info)},
         events: [
-            // events added here using handleDateTimeClick()
+            // events added here using addEvent(), called from Event.svelte
         ],
         selectable: true,
         select: (info) => {summonToolbar({event: info})},
