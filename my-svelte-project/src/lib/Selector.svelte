@@ -9,12 +9,12 @@
     export let summonToolbar
     export const addEvent = (eventInfo) => {
         idCount += 1
-        ec.addEvent({
-            id: idCount,
-            title: eventInfo.title,
-            start: eventInfo.start,
-            end: eventInfo.end,
-        })
+        ec.addEvent(eventInfo)
+        ec = ec.unselect()
+    }
+
+    export const editEvent = (eventInfo) => {
+        ec.updateEvent(eventInfo)
     }
 
     let idCount = 0;
@@ -30,7 +30,7 @@
         dayMaxEvents: true,
         firstDay: 1,
         unselectAuto: false,
-        eventClick: (info) => {eventClick(info)},
+        eventClick: (info) => {summonToolbar({event: info.event})},
         events: [
             // events added here using addEvent(), called from Event.svelte
         ],

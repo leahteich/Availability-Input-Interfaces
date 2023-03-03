@@ -14,7 +14,9 @@
 <main>
   {#key selectedEvent}
     {#if selectedEvent}
-      <div id="sticky"> <Event addEvent={selectorComponent.addEvent} eventObj={selectedEvent}/></div>
+      <div id="sticky"> 
+        <Event editEvent={selectorComponent.editEvent} addEvent={selectorComponent.addEvent} eventObj={selectedEvent}/>
+      </div>
     {/if}
   {/key}
   <Selector bind:this={selectorComponent} summonToolbar={changeEvent}/>
