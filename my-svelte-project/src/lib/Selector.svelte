@@ -17,6 +17,14 @@
         ec.updateEvent(eventInfo)
     }
 
+    export const handleCancel = () => {
+        ec.unselect()
+    }
+
+    export const deleteEvent = (id) => {
+        ec.removeEventById(id)
+    }
+
     let idCount = 0;
     let ec;
     let plugins = [TimeGrid, Interaction];

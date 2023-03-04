@@ -1,33 +1,21 @@
 <script>
-  // import Counter from './lib/Counter.svelte'
-  import Selector from './lib/Selector.svelte'
-  import Event from './lib/Event.svelte'
+  // import Selector from './lib/Selector.svelte'
+  // import Event from './lib/Event.svelte'
+  import { Router, Route } from 'svelte-routing'
+  import Selection from "./pages/Selection.svelte";
+  import Landing from "./pages/Landing.svelte";
+  import Success from "./pages/Success.svelte"
+  import "carbon-components-svelte/css/white.css";
 
-  let selectorComponent
-  let selectedEvent = null
-  const changeEvent = (obj) => {
-    selectedEvent = obj.event
-  }
 </script>
-
-
 <main>
-  {#key selectedEvent}
-    {#if selectedEvent}
-      <div id="sticky"> 
-        <Event editEvent={selectorComponent.editEvent} addEvent={selectorComponent.addEvent} eventObj={selectedEvent}/>
-      </div>
-    {/if}
-  {/key}
-  <Selector bind:this={selectorComponent} summonToolbar={changeEvent}/>
-  
+  <Router>
+    <Route component={Landing} />
+    <Route path="/selection">
+        <Selection/>
+    </Route>
+    <Route path="/success">
+        <Success/>
+    </Route>
+  </Router>
 </main>
-
-<style>
-#sticky {
-  position: sticky!important;
-  top: 1rem;
-  z-index: 20
-}
-
-</style>

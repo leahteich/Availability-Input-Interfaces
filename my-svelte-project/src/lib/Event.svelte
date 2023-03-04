@@ -1,11 +1,13 @@
 <script>
     let name = ""
     let notes = ""
-    import { Button } from "carbon-components-svelte";
+    import { Button, RadioButton, RadioButtonGroup } from "carbon-components-svelte";
 
     export let eventObj
     export let addEvent
     export let editEvent
+    export let handleCancel
+    export let deleteEvent
 
     /* 
         Only events that already exist will have extended props (for availability types),
@@ -49,7 +51,6 @@
                 err = "Please select an availability type."
             }
         }
-        
     }
 </script>
 
@@ -57,25 +58,27 @@
     {#if show}
     <div id="eventbox"> 
         {date} from {startTime} to {endTime}<br>
-        <!-- {name} -->
         <br/>
         <div class="grid-container">
             <div class="grid-child purple">
-                Location:
-                <Button on:click={() => {location = "Virtual"}}>Virtually</Button>
-                <Button on:click={() => {location = "In person"}}> In person</Button>
-                <Button on:click={() => {location = "Virtual or in person"}}>Both</Button>
+                <RadioButtonGroup bind:selected={location} on:change={() => console.log(location)} legendText="Location">
+                    <RadioButton value='Virtually' labelText="Virtual"/>
+                    <RadioButton value='In person' labelText="In person"/>
+                    <RadioButton value='Virtual or in person' labelText="Both"/>
+                </RadioButtonGroup>
             </div>
             <div class="grid-child green">
-                Availability:
-                <Button on:click={() => {availabilityType = "definite"}}>Definitely!</Button>
-                <Button on:click={() => {availabilityType = "ifNeeded"}}>If needed</Button>
+                <RadioButtonGroup bind:selected={availabilityType} on:change={() => console.log(availabilityType)} legendText="Availability">
+                    <RadioButton value='definite' labelText="Definitely!"/>
+                    <RadioButton value='ifNeeded' labelText="If needed"/>
+                </RadioButtonGroup>
             </div>
-            <div class="grid-child green">
-                <Button on:click={() => handleSubmit()}>
-                    Done
-                </Button>
-                <Button sx={{margin: 20}}>Delete</Button>
+            <div>
+                <Button kind="secondary" on:click={() => {if (!editing) {handleCancel()}; show = false}}>Cancel</Button>
+                <Button kind="primary" on:click={() => handleSubmit()}>Done</Button>
+                {#if editing}
+                <Button kind="danger" on:click={() => {deleteEvent(eventObj.id); show = false}}>Delete</Button>
+                {/if}
             </div>
         </div>
         {err}
@@ -85,13 +88,23 @@
 
 <style>
     #eventbox {
-        background: grey;
+        background: lightgray;
         color: black;
         padding: 0.25rem
     }
     .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        /* padding-left: 10%; */
+        /* padding-right: 10%; */
+        padding-bottom: 20px;
+    }
+
+    .grid-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 25%;
     }
 </style>
