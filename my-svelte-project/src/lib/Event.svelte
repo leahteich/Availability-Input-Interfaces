@@ -2,7 +2,6 @@
     let name = ""
     let notes = ""
     import { Button, RadioButton, RadioButtonGroup } from "carbon-components-svelte";
-
     export let eventObj
     export let addEvent
     export let editEvent
@@ -81,7 +80,7 @@
                 {/if}
             </div>
         </div>
-        {err}
+        <div class="error">{err}</div>
     </div>
     {/if}
 </main>
@@ -90,7 +89,10 @@
     #eventbox {
         background: lightgray;
         color: black;
-        padding: 0.25rem
+        padding: 0.25rem;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-top: 10px;
     }
     .grid-container {
         display: grid;
@@ -106,5 +108,9 @@
         align-items: center;
         justify-content: center;
         padding-left: 25%;
+    }
+    .error {
+        color: #BA0001;
+        margin-bottom: 10px;
     }
 </style>
