@@ -4,7 +4,8 @@
     import Event from '../lib/Event.svelte'
     import { Button } from 'carbon-components-svelte'
     import { navigate } from 'svelte-routing';
-  
+    import { username } from '../store.js'
+
     let selectorComponent
     let selectedEvent = null
     const changeEvent = (obj) => {
@@ -14,6 +15,10 @@
   
   
   <main>
+    <h1>
+      { $username }'s 53rd Week
+
+    </h1>
     {#key selectedEvent}
       {#if selectedEvent}
         <div id="sticky"> 
