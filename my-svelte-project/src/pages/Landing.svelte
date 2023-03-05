@@ -1,6 +1,7 @@
 <script>
     import { Button, TextInput } from "carbon-components-svelte";
     import { navigate } from 'svelte-routing'
+    import { username } from '../store.js'
 
     let userName;
     let error = false
@@ -8,6 +9,7 @@
         if (!userName) {
             error = true
         } else {
+            $username = userName.charAt(0).toUpperCase() + userName.slice(1);
             navigate('/selection')
         }
     }

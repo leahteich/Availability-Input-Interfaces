@@ -73,8 +73,8 @@
                 </RadioButtonGroup>
             </div>
             <div>
-                <Button kind="secondary" on:click={() => {if (!editing) {handleCancel()}; show = false}}>Cancel</Button>
                 <Button kind="primary" on:click={() => handleSubmit()}>Done</Button>
+                <Button kind="secondary" on:click={() => {if (!editing) {handleCancel()}; show = false}}>Cancel</Button>
                 {#if editing}
                 <Button kind="danger" on:click={() => {deleteEvent(eventObj.id); show = false}}>Delete</Button>
                 {/if}

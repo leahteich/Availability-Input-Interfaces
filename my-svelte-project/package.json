@@ -16,8 +16,12 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
+    "@aws-amplify/auth": "^5.1.10",
     "@event-calendar/interaction": "^0.17.0",
+    "@sveltejs/kit": "^1.10.0",
     "carbon-components-svelte": "^0.73.2",
+    "mongodb": "^5.1.0",
+    "svelte-kit": "^1.2.0",
     "svelte-routing": "^1.6.0"
   }
 }
