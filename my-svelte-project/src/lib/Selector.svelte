@@ -8,7 +8,7 @@
 
     export let summonToolbar
     export const addEvent = (eventInfo) => {
-        idCount += 1
+        // idCount += 1
         ec.addEvent(eventInfo)
         ec = ec.unselect()
     }
@@ -25,12 +25,11 @@
         ec.removeEventById(id)
     }
 
-    let idCount = 0;
+    // let idCount = 0;
     let ec;
     let plugins = [TimeGrid, Interaction];
     let options = {
         allDaySlot: false,
-        eventDragStart: (info) => {console.log(info.view)},
         headerToolbar: {start: '', center: '', end: ''},
         view: 'timeGridWeek',
         dayHeaderFormat: {weekday: 'long', month: 'numeric', day: 'numeric'}, 

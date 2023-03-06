@@ -23,7 +23,6 @@
 
     const handleSubmit = () => {
         if (editing){
-            console.log(availabilityType)
             editEvent({
                 ...eventObj, title: location, 
                 backgroundColor: availabilityType == 'definite' ? '#3d8c40' : '#ed820e',
@@ -67,7 +66,7 @@
                 </RadioButtonGroup>
             </div>
             <div class="grid-child green">
-                <RadioButtonGroup bind:selected={availabilityType} on:change={() => console.log(availabilityType)} legendText="Availability">
+                <RadioButtonGroup bind:selected={availabilityType} legendText="Availability">
                     <RadioButton value='definite' labelText="Definitely!"/>
                     <RadioButton value='ifNeeded' labelText="If needed"/>
                 </RadioButtonGroup>

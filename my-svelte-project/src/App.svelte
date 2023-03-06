@@ -18,8 +18,8 @@
     <Route path="/success">
         <Success/>
     </Route>
-    <Route path="/admin">
+    <!-- <Route path="/admin">
       <Admin/>
-  </Route>
+    </Route> -->
   </Router>
 </main>

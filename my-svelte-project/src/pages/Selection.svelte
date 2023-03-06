@@ -34,6 +34,7 @@
         console.log(newUser);
         navigate('/success')
         const sendtoDB = await db.post(newUser);
+        console.log(users)
     }
 
     async function updateUsers() {
@@ -42,7 +43,7 @@
       });
 
       users = allUsers.rows.map(row => row.doc);
-      console.log(users)
+      // console.log(users)
 
     }
 
