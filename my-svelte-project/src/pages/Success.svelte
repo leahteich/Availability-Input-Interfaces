@@ -10,7 +10,7 @@
         <div class="inputContainer">
             Thanks, {$name}! Schedule successfully inputted.<br/> 
             Please click Restart for the next person!
-        <Button kind="secondary" on:click={() => navigate('/landing')}>Restart</Button>
+        <Button kind="secondary" on:click={() => navigate('/')}>Restart</Button>
         </div>
     </div>
    </main>
