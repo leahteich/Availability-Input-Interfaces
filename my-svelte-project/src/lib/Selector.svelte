@@ -31,9 +31,10 @@
     let options = {
         allDaySlot: false,
         eventDragStart: (info) => {console.log(info.view)},
-        headerToolbar: {start: 'title', center: '', end: ''},
+        headerToolbar: {start: '', center: '', end: ''},
         view: 'timeGridWeek',
-        slotDuration: '00:15',
+        dayHeaderFormat: {weekday: 'long', month: 'numeric', day: 'numeric'}, 
+        slotDuration: '00:30',
         editable: true,
         dayMaxEvents: true,
         firstDay: 1,
@@ -44,6 +45,8 @@
         ],
         selectable: true,
         select: (info) => {summonToolbar({event: info})},
+        slotMinTime: '07:00:00',
+        slotMaxTime: '22:00:00'
     };
 
 

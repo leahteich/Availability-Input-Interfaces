@@ -1,7 +1,7 @@
 <script>
-    import { Button, TextInput } from "carbon-components-svelte";
+    import { Button, TextInput, Dropdown } from "carbon-components-svelte";
     import { navigate } from 'svelte-routing'
-    import { username } from '../store.js'
+    import { name, starttime } from '../store.js'
 
     let userName;
     let error = false
@@ -9,18 +9,37 @@
         if (!userName) {
             error = true
         } else {
-            $username = userName.charAt(0).toUpperCase() + userName.slice(1);
+            $name = userName.charAt(0).toUpperCase() + userName.slice(1);
+            var today = new Date();
+            $starttime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            console.log($name +" began at " + $starttime + " " + selectedValue)
             navigate('/selection')
         }
     }
+    let selectedValue = ""
 </script>
 
 <main>
     <div class="wrapper">
         <div class="inputContainer">
             <div class="text">Event: 53rd Week Bonanza</div>
-            <div class="text">Welcome! Enter your name below:</div>
+            <div class="text">Welcome! Enter your name and timezone below:</div>
             <TextInput invalid={error} invalidText="Please enter a name" bind:value={userName} placeholder="Your name here..." />
+            <br/>
+            <Dropdown
+                size="sm"
+                titleText="Timezone"
+                selectedId="0"
+                items={[
+                    { id: "0", text: "EST" },
+                    { id: "1", text: "CST" },
+                    { id: "3", text: "MST" },
+                    { id: "4", text: "PST" },
+                    { id: "5", text: "AKST" },
+                    { id: "6", text: "HST" },
+                ]}
+            />
+            <br/>
             <Button kind="secondary" on:click={() => validateInput()}>Submit</Button>
         </div>
     </div>

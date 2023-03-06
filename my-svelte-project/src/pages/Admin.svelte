@@ -1,16 +1,14 @@
 <script>
-    import { Button } from "carbon-components-svelte";
-    import { navigate } from 'svelte-routing';
-    import { name } from '../store.js'
-
+    export let users
 </script>
 
 <main>
     <div class="wrapper">
         <div class="inputContainer">
-            Thanks, {$name}! Schedule successfully inputted.<br/> 
-            Please click Restart for the next person!
-        <Button kind="secondary" on:click={() => navigate('/landing')}>Restart</Button>
+            Admin Tools <br/>
+            Best time: [Time] <br/>
+            Download data 
+            
         </div>
     </div>
    </main>
