@@ -2,6 +2,8 @@
     let name = ""
     let notes = ""
     import { Button, RadioButton, RadioButtonGroup } from "carbon-components-svelte";
+    import { besttimes } from '../store.js'
+
     export let eventObj
     export let addEvent
     export let editEvent
@@ -15,7 +17,8 @@
     let editing = !!eventObj.extendedProps
     let startTime = eventObj.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
     let endTime = eventObj.end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-    let date = eventObj.start.toLocaleString('default', { month: 'long' }) + ' ' + eventObj.start.getDate()
+    let startdate = eventObj.start.toLocaleString('default', { month: 'long' }) + ' ' + eventObj.start.getDate()
+    let enddate = eventObj.end.toLocaleString('default', { month: 'long' }) + ' ' + eventObj.end.getDate()
     let show = true
     let location = eventObj.title || null
     let availabilityType = (eventObj.extendedProps && eventObj.extendedProps.availabilityType) || null
@@ -31,7 +34,8 @@
                 }})
             show = false
         } else {
-            if (location && availabilityType) {
+            if (location && availabilityType && (enddate == startdate)) {
+                
                 addEvent({
                     ...eventObj, 
                     title: location, 
@@ -40,6 +44,7 @@
                         availabilityType
                     }
                 })
+                $besttimes.push((startTime+"_" + endTime +"_" + startdate).toString())
                 show = false
             } 
             if (!location) {
@@ -48,6 +53,9 @@
             if (!availabilityType) {
                 err = "Please select an availability type."
             }
+            if (enddate != startdate) {
+                err = "Event cannot be multi-day"
+            }
         }
     }
 </script>
@@ -55,11 +63,11 @@
 <main>
     {#if show}
     <div id="eventbox"> 
-        {date} from {startTime} to {endTime}<br>
+        {startdate} from {startTime} to {endTime}<br>
         <br/>
         <div class="grid-container">
             <div class="grid-child purple">
-                <RadioButtonGroup bind:selected={location} on:change={() => console.log(location)} legendText="Location">
+                <RadioButtonGroup bind:selected={location} legendText="Location">
                     <RadioButton value='Virtually' labelText="Virtual"/>
                     <RadioButton value='In person' labelText="In person"/>
                     <RadioButton value='Virtual or in person' labelText="Both"/>
@@ -72,7 +80,7 @@
                 </RadioButtonGroup>
             </div>
             <div>
-                <Button kind="primary" on:click={() => handleSubmit()}>Done</Button>
+                <Button kind="primary" on:click={() => handleSubmit()}>Add Event</Button>
                 <Button kind="secondary" on:click={() => {if (!editing) {handleCancel()}; show = false}}>Cancel</Button>
                 {#if editing}
                 <Button kind="danger" on:click={() => {deleteEvent(eventObj.id); show = false}}>Delete</Button>

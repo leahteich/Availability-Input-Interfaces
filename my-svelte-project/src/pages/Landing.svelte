@@ -12,7 +12,7 @@
             $name = userName.charAt(0).toUpperCase() + userName.slice(1);
             var today = new Date();
             $starttime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            console.log($name +" began at " + $starttime + " " + selectedValue)
+            //console.log($name +" began at " + $starttime + " " + selectedValue)
             navigate('/selection')
         }
     }

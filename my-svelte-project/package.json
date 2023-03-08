@@ -18,6 +18,8 @@
   "dependencies": {
     "@aws-amplify/auth": "^5.1.10",
     "@event-calendar/interaction": "^0.17.0",
+    "@macfja/svelte-persistent-store": "^2.2.1",
+    "@sveltejs/adapter-vercel": "^2.3.0",
     "@sveltejs/kit": "^1.10.0",
     "carbon-components-svelte": "^0.73.2",
     "dotenv": "^16.0.3",

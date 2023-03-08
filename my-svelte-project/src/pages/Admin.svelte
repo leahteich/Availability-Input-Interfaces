@@ -1,5 +1,11 @@
 <script>
-    // export let users
+    import { allusers } from "../store.js"
+    let myusers = $allusers
+    console.log(myusers)
+    const db = window.indexedDB.open('_pouch_db');
+
+
+
 </script>
 
 <main>
@@ -7,9 +13,15 @@
         <div class="inputContainer">
             Admin Tools <br/>
             Best time: [Time] <br/>
-            Download data 
-            
+            Data   
+            {#each $allusers as { nameval, start, end, times }, i}
+            <li>
+                {i + 1}: {nameval} took {start - end} to submit {times} 
+            </li>
+            {/each}
         </div>
+
+
     </div>
    </main>
 

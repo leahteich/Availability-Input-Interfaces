@@ -1,10 +1,9 @@
 <script>
-    // import Counter from './lib/Counter.svelte'
     import Selector from '../lib/Selector.svelte'
     import Event from '../lib/Event.svelte'
     import { Button, UnorderedList, ListItem } from 'carbon-components-svelte'
     import { navigate } from 'svelte-routing';
-    import { name, starttime } from '../store.js'
+    import { name, starttime, besttimes, allusers } from '../store.js'
     import { onMount } from 'svelte'
     let db;
     let users = []
@@ -24,17 +23,24 @@
     async function addUser(event){
       var end = new Date();
       let endtime = end.getHours() + ":" + end.getMinutes() + ":" + end.getSeconds();
-      console.log($name + " finished at " + endtime) 
+      // console.log($name + " finished at " + endtime) 
 
         const newUser = {
             nameval: $name,
             start: $starttime,
-            end: endtime
+            end: endtime,
+            times: $besttimes
         }
         console.log(newUser);
         navigate('/success')
+        $besttimes = []
         const sendtoDB = await db.post(newUser);
+        await updateUsers();
         console.log(users)
+        
+       // for (let i=0; i < users.length; i++) {
+        //  console.log(users[i].nameval)
+       // }
     }
 
     async function updateUsers() {
@@ -42,15 +48,13 @@
         include_docs:true
       });
 
-      users = allUsers.rows.map(row => row.doc);
-      // console.log(users)
-
+      users = allUsers.rows.map(row => row.doc).filter(value => Object.keys(value).length !== 0);
     }
 
 
       </script>
   
-  <svelte:head>
+<svelte:head>
     <script src="//cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
 </svelte:head>
 
@@ -69,24 +73,34 @@
         </div>
       {/if}
     {/key}
-    <h3>Hi, {$name}</h3>
-    <h3 id="eventtxt">Event: 53rd Week Bonanza</h3>
-    <h4>Proposed Location: Smith Center Collaborative Commons</h4>
-    <br/>
-    <UnorderedList nested>
-      <ListItem>
-        Click and drag on the calendar to select your available times.
-      </ListItem>
-      <ListItem>
-        Click an existing time range to edit it.
-      </ListItem>
-      <ListItem>
-        Click and drag an existing time range to move it earlier/later, or to a different day.
-      </ListItem>
-      <ListItem>
-        Click and drag near the bottom of an existing time range to resize it.
-      </ListItem>
-    </UnorderedList>
+    <div class="grid-container">
+      <div class="grid-child purple">
+        <h3>Hi, {$name}</h3>
+        <h3 id="eventtxt">Event: 53rd Week Bonanza</h3>
+        <h4>Proposed Location: Smith Center Collaborative Commons</h4>
+        <br/>
+        <UnorderedList nested>
+          <ListItem>
+            Click and drag on the calendar to select your available times.
+          </ListItem>
+          <ListItem>
+            Click an existing time range to edit it.
+          </ListItem>
+          <ListItem>
+            Click and drag an existing time range to move it earlier/later, or to a different day.
+          </ListItem>
+          <ListItem>
+            Click and drag near the bottom of an existing time range to resize it.
+          </ListItem>
+        </UnorderedList>
+    
+      </div>
+      <div class="grid-child green">
+        <Button kind="secondary" on:click={() => navigate('/admin')}>Admin View</Button>
+      </div>
+
+  </div>
+
     <hr/>
     <br/>
     
@@ -117,6 +131,19 @@
       align-items: center;
       justify-content: center;
     }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding-bottom: 20px;
+    }
+
+    .grid-child {
+        align-items: center;
+        justify-content: center;
+    }
+
   
   </style>
   
