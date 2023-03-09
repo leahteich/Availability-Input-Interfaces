@@ -125,8 +125,6 @@
         </div>
       {/if}
     {/key}
-    <div class="grid-container">
-      <div class="grid-child purple">
         <h3>Hi, {$name}</h3>
         <h3 id="eventtxt">Event: 53rd Week Bonanza</h3>
         <h4>Proposed Location: Smith Center Collaborative Commons</h4>
@@ -146,12 +144,6 @@
           </ListItem>
         </UnorderedList>
     
-      </div>
-      <div class="grid-child green">
-        <Button kind="secondary" on:click={() => navigate('/admin')}>Admin View</Button>
-      </div>
-
-  </div>
 
     <hr/>
     <br/>
@@ -184,17 +176,6 @@
       justify-content: center;
     }
 
-    .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding-bottom: 20px;
-    }
-
-    .grid-child {
-        align-items: center;
-        justify-content: center;
-    }
 
   
   </style>
