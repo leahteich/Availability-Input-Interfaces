@@ -23,6 +23,7 @@
     "@sveltejs/kit": "^1.10.0",
     "carbon-components-svelte": "^0.73.2",
     "dotenv": "^16.0.3",
+    "moment": "^2.29.4",
     "mongodb": "^5.1.0",
     "pouchdb-browser": "^8.0.1",
     "pouchdb-svelte": "^7.2.2-alpha0.0.1",

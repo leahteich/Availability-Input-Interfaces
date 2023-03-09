@@ -44,7 +44,7 @@
                         availabilityType
                     }
                 })
-                $besttimes.push((startTime+"_" + endTime +"_" + startdate).toString())
+                $besttimes.push((startTime+"-" + endTime +"_" + startdate).toString())
                 show = false
             } 
             if (!location) {

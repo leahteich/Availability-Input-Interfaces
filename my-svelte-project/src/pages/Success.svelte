@@ -1,7 +1,7 @@
 <script>
     import { Button } from "carbon-components-svelte";
     import { navigate } from 'svelte-routing';
-    import { name } from '../store.js'
+    import { name, bestoverall } from '../store.js'
 
 </script>
 
@@ -9,6 +9,7 @@
     <div class="wrapper">
         <div class="inputContainer">
             Thanks, {$name}! Schedule successfully inputted.<br/> 
+            Currently, { $bestoverall } <br/>
             Please click Restart for the next person!
         <Button kind="secondary" on:click={() => navigate('/')}>Restart</Button>
         </div>
