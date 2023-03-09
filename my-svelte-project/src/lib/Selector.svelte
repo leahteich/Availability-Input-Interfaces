@@ -31,7 +31,7 @@
         headerToolbar: {start: '', center: '', end: ''},
         view: 'timeGridWeek',
         dayHeaderFormat: {weekday: 'long', month: 'numeric', day: 'numeric'}, 
-        slotDuration: '00:15',
+        slotDuration: '00:30',
         editable: true,
         dayMaxEvents: true,
         firstDay: 1,

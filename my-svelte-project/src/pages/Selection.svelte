@@ -65,7 +65,9 @@
           }
         }
       }
-      $bestoverall = " the optimal meeting time is " + bestday + " at " + besttime + "."
+      let origbesttime = besttime
+      let endbesttime = moment(besttime, "hh:mm A").add(30, 'minutes').format("hh:mm A")
+      $bestoverall = " the optimal meeting time is " + bestday + " at " + origbesttime + "-" + endbesttime + "."
     }
 
     async function updateUsers() {

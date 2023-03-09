@@ -20,12 +20,12 @@ export function getBest(users) {
     
     for (const [key, value] of Object.entries(alltimes)) {
       for (let i=0; i < value.length; i++) {
-        let start = moment(value[i].split("-")[0], "HH:mm A")
-        let end = moment(value[i].split("-")[1],"HH:mm A")
+        let start = moment(value[i].split("-")[0], "hh:mm A")
+        let end = moment(value[i].split("-")[1],"hh:mm A")
         let newtime = start;
         while (!(newtime.isSame(end))) {
-          newtimeslots[key].push(newtime.format("HH:mm A"))
-          newtime = start.add(15, 'minutes');
+          newtimeslots[key].push(newtime.format("hh:mm A"))
+          newtime = start.add(30, 'minutes');
         }
       }         
     }
