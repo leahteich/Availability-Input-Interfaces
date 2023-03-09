@@ -67,14 +67,17 @@
                 })
                 $besttimes.push((startTime+"-" + endTime +"_" + startdate).toString())
                 show = false
-            } 
-            if (!location) {
+            }
+            if (!location && !availabilityType) {
+                err = "Please select an availability and location."
+            }
+            else if (!location) {
                 err = "Please select a location."
             } 
-            if (!availabilityType) {
+            else if (!availabilityType) {
                 err = "Please select an availability type."
             }
-            if (enddate != startdate) {
+            else if (enddate != startdate) {
                 err = "Event cannot be multi-day"
             }
         }
