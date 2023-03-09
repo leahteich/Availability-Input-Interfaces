@@ -38,7 +38,7 @@
         $besttimes = []
         const sendtoDB = await db.post(newUser);
         await updateUsers();
-        
+      console.log(users)
       let allBest = getBest(users)[0]
       let newtimeslots = getBest(users)[1]
 
@@ -68,6 +68,7 @@
       let origbesttime = besttime
       let endbesttime = moment(besttime, "hh:mm A").add(30, 'minutes').format("hh:mm A")
       $bestoverall = " the optimal meeting time is " + bestday + " at " + origbesttime + "-" + endbesttime + "."
+      console.log($bestoverall)
     }
 
     async function updateUsers() {
@@ -76,6 +77,7 @@
       });
 
       users = allUsers.rows.map(row => row.doc).filter(value => Object.keys(value).length !== 0);
+      
     }
 
 
