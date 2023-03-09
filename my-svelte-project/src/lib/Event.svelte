@@ -24,6 +24,27 @@
     let availabilityType = (eventObj.extendedProps && eventObj.extendedProps.availabilityType) || null
     let err = ''
 
+
+    /** Dispatch event on click outside of node */
+    function clickOutside(node) {
+    
+    const handleClick = event => {
+        if (node && !node.contains(event.target) && !event.defaultPrevented) {
+        node.dispatchEvent(
+            new CustomEvent('click_outside', node)
+        )
+        }
+    }
+
+        document.addEventListener('click', handleClick, true);
+    
+    return {
+        destroy() {
+        document.removeEventListener('click', handleClick, true);
+        }
+        }
+    }
+
     const handleSubmit = () => {
         if (editing){
             editEvent({
@@ -58,11 +79,15 @@
             }
         }
     }
+    function handleClickOutside(event) {
+		handleSubmit();
+	}
+
 </script>
 
 <main>
     {#if show}
-    <div id="eventbox"> 
+    <div id="eventbox" use:clickOutside on:click_outside={handleClickOutside}>
         {startdate} from {startTime} to {endTime}<br>
         <br/>
         <div class="grid-container">

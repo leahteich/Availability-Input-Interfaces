@@ -104,16 +104,16 @@
         <br/>
         <UnorderedList nested>
           <ListItem>
-            Click and drag on the calendar to select your available times.
+            Click and drag on the calendar to select availability.
           </ListItem>
           <ListItem>
             Click an existing time range to edit it.
           </ListItem>
           <ListItem>
-            Click and drag an existing time range to move it earlier/later, or to a different day.
+            Drag an existing time range to move it earlier/later, or to a different day.
           </ListItem>
           <ListItem>
-            Click and drag near the bottom of an existing time range to resize it.
+            Drag near the bottom of an existing time range to resize it.
           </ListItem>
         </UnorderedList>
     
