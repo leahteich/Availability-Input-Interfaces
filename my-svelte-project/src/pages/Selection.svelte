@@ -6,6 +6,7 @@
     import { name, starttime, besttimes, bestoverall } from '../store.js';
     import { onMount } from 'svelte';
     import moment from 'moment'
+    import { getBest } from '../besttime.js'
 
     let db;
     let users = []
@@ -38,36 +39,8 @@
         const sendtoDB = await db.post(newUser);
         await updateUsers();
         
-        let alltimes = {}
-
-        for (let i=0; i < users.length; i++) {
-          for (let j=0; j<users[i].times.length; j++) {
-            let day = users[i].times[j].split("_")[1]
-            if (!(day in alltimes)) 
-              alltimes[day] = [users[i].times[j].split("_")[0]]
-            else 
-              alltimes[day].push(users[i].times[j].split("_")[0])
-          }
-        }
-        
-        let newtimeslots = {}
-
-        for (let i=0; i < Object.keys(alltimes).length; i++) 
-          newtimeslots[Object.keys(alltimes)[i]] = []
-        
-        for (const [key, value] of Object.entries(alltimes)) {
-          for (let i=0; i < value.length; i++) {
-            let start = moment(value[i].split("-")[0], "HH:mm A")
-            let end = moment(value[i].split("-")[1],"HH:mm A")
-            let newtime = start;
-            while (!(newtime.isSame(end))) {
-              newtimeslots[key].push(newtime.format("HH:mm A"))
-              newtime = start.add(15, 'minutes');
-            }
-          }         
-        }
-
-      let allBest = {}
+      let allBest = getBest(users)[0]
+      let newtimeslots = getBest(users)[1]
 
       for (const [key, value] of Object.entries(newtimeslots)) {
         for (let i=0; i<value.length; i++) {
