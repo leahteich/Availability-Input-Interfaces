@@ -5,6 +5,7 @@
     import { Button, RadioButton, RadioButtonGroup } from "carbon-components-svelte";
     import { besttimes } from '../store.js'
 
+    // Svelte concept: prop exporting
     export let eventObj
     export let addEvent
     export let editEvent

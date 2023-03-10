@@ -9,7 +9,7 @@
     import Interaction from '@event-calendar/interaction'
     import '@event-calendar/core/index.css';
 
-    // Software Concept: Modularized code
+    // Software Concept: Modularized code; props
     export let summonToolbar
     export const addEvent = (eventInfo) => {
         ec.addEvent(eventInfo)
