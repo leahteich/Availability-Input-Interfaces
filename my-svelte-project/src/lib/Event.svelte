@@ -1,3 +1,5 @@
+<!-- This Event component implements the Event concept for availability, preference, and location for spatial rendering -->
+
 <script>
     // Software Concept: Reusable components from Carbon Components
     import { Button, RadioButton, RadioButtonGroup } from "carbon-components-svelte";
@@ -70,6 +72,7 @@
                 $besttimes.push((startTime+"-" + endTime +"_" + startdate).toString())
                 show = false
             }
+            // Ensures users do not add events with missing information or illegal features (i.e. multi-day)
             if (!location && !availabilityType) {
                 err = "Please select an availability and location."
             }
@@ -84,6 +87,8 @@
             }
         }
     }
+    
+    // Post competition addition following feedback from users
     function handleClickOutside(event) {
 		handleSubmit();
 	}

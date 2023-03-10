@@ -1,4 +1,4 @@
-<!-- Availability Concept: Selection (synchronized with event concepts)-->
+<!-- Availability Concept: Selection (synchronized with event concepts) -->
 
 <script>
     // Software Concept: Reusable, modularized components 
@@ -37,7 +37,7 @@
             end: endtime,
             times: $besttimes
         }
-
+        // Software Concept: Routing
         navigate('/success')
         $besttimes = []
         const sendtoDB = await db.post(newUser);
