@@ -1,11 +1,15 @@
+<!-- Availability Concept: Selection --> 
+
 <script>
 // @ts-nocheck
 
+    // Availability Concept: Rendering of Time Grid (i.e., Calendar component)
     import Calendar from '@event-calendar/core';
     import TimeGrid from '@event-calendar/time-grid';
     import Interaction from '@event-calendar/interaction'
     import '@event-calendar/core/index.css';
 
+    // Software Concept: Modularized code
     export let summonToolbar
     export const addEvent = (eventInfo) => {
         ec.addEvent(eventInfo)
@@ -49,6 +53,7 @@
 
 </script>
 
+<!-- Svelte Concept: Binding-->
 <Calendar bind:this={ec} {plugins} {options} />
 
 

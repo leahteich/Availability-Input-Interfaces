@@ -4,7 +4,8 @@ import moment from 'moment'
 
 //Availability Concept: Best time, helping organizer act on availability preferences to schedule a time 
 export function getBest(users) {
-    let alltimes = {}
+
+  let alltimes = {}
     for (let i=0; i < users.length; i++) {
       for (let j=0; j<users[i].times.length; j++) {
         let day = users[i].times[j].split("_")[1]
@@ -15,6 +16,7 @@ export function getBest(users) {
       }
     }
     
+    // Availibility Concept: Time blocks  
     let newtimeslots = {}
 
     for (let i=0; i < Object.keys(alltimes).length; i++) 
@@ -34,6 +36,7 @@ export function getBest(users) {
 
   let allBest = {}
 
+  // Availibility Concept: Calculating overlap  
   for (const [key, value] of Object.entries(newtimeslots)) {
     for (let i=0; i<value.length; i++) {
       const counts = {}

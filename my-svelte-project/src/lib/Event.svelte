@@ -97,6 +97,7 @@
         <br/>
         <!-- Availability Concept: Preferences, helping users find the most optimal time and place -->
         <div class="grid-container">
+            <!-- Svelte Concept: Bindings -->
             <div class="grid-child purple">
                 <RadioButtonGroup bind:selected={location} legendText="Location">
                     <RadioButton value='Virtually' labelText="Virtual"/>

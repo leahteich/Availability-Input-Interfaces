@@ -1,3 +1,5 @@
+<!-- Availability Concept: Selection (synchronized with event concepts)-->
+
 <script>
     // Software Concept: Reusable, modularized components 
     import Selector from '../lib/Selector.svelte';
@@ -41,20 +43,10 @@
         const sendtoDB = await db.post(newUser);
         await updateUsers();
 
+
       let allBest = getBest(users)[0]
-      let newtimeslots = getBest(users)[1]
 
-      for (const [key, value] of Object.entries(newtimeslots)) {
-        for (let i=0; i<value.length; i++) {
-          const counts = {}
-          for (const num of value) {
-            counts[num] = counts[num] ? counts[num] + 1 : 1;
-          }
-          allBest[key] = counts
-        }
-      }
-
-      // Availability Concept: Ideal time
+      // Availability Concept: Ideal Time Display
       let besttime;
       let bestday;
       let bestcount = 0;
@@ -81,9 +73,8 @@
       });
 
       users = allUsers.rows.map(row => row.doc).filter(value => Object.keys(value).length !== 0);
-  
-    }
 
+    }
 
       </script>
   
@@ -95,6 +86,7 @@
   <main>
     {#key selectedEvent}
       {#if selectedEvent}
+      <!-- Availability Concept: Event Component -->
         <div id="sticky"> 
           <Event 
             handleCancel={selectorComponent.handleCancel} 
@@ -129,6 +121,7 @@
     <hr/>
     <br/>
     
+    <!-- Svelte Concept: Binding-->
     <Selector bind:this={selectorComponent} summonToolbar={changeEvent}/><br/>
   
     <div id="buttonContainer">

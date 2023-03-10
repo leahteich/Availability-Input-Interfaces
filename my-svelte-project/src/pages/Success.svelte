@@ -1,4 +1,5 @@
 <script>
+    // Software Concept: Reusable, modular code
     import { Button } from "carbon-components-svelte";
     import { navigate } from 'svelte-routing';
     import { name, bestoverall } from '../store.js'

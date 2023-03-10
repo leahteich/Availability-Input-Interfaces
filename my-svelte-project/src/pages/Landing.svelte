@@ -31,6 +31,7 @@
         <div class="inputContainer">
             <div class="text">Event: 53rd Week Bonanza</div>
             <div class="text">Welcome! Enter your name and timezone below:</div>
+            <!-- Svelte Concept: Binding-->
             <TextInput invalid={error} invalidText="Please enter a name" bind:value={userName} placeholder="Your name here..." />
             <br/>
             <!-- Availability Concept: Time Zone Compatibility -->
