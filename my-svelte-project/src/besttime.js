@@ -1,6 +1,8 @@
+// Software Component: Reusable components, importing JS time module
 import moment from 'moment'
 
 
+//Availability Concept: Best time, helping organizer act on availability preferences to schedule a time 
 export function getBest(users) {
     let alltimes = {}
     for (let i=0; i < users.length; i++) {

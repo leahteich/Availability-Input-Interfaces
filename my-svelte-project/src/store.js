@@ -1,4 +1,4 @@
-import { persistBrowserSession } from "@macfja/svelte-persistent-store"
+// Software Concept: Svelte local store for passing data across multiple pages
 import { writable } from 'svelte/store';
 
 export const name = writable(null);

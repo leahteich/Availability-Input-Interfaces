@@ -1,4 +1,5 @@
 <script>
+    // Software Concept: Reusable, modularized components 
     import Selector from '../lib/Selector.svelte';
     import Event from '../lib/Event.svelte';
     import { Button, UnorderedList, ListItem } from 'carbon-components-svelte';
@@ -11,6 +12,7 @@
     let db;
     let users = []
 
+    // Software Concept: Database for persistent storage 
     onMount(async function() {
         db = new PouchDB('db');
         await updateUsers();
@@ -22,7 +24,7 @@
       selectedEvent = obj.event
     }
 
-
+    // Availability Concept: User 
     async function addUser(event){
       var end = new Date();
       let endtime = end.getHours() + ":" + end.getMinutes() + ":" + end.getSeconds();
@@ -33,12 +35,12 @@
             end: endtime,
             times: $besttimes
         }
-        console.log(newUser);
+
         navigate('/success')
         $besttimes = []
         const sendtoDB = await db.post(newUser);
         await updateUsers();
-      console.log(users)
+
       let allBest = getBest(users)[0]
       let newtimeslots = getBest(users)[1]
 
@@ -52,6 +54,7 @@
         }
       }
 
+      // Availability Concept: Ideal time
       let besttime;
       let bestday;
       let bestcount = 0;
@@ -71,13 +74,14 @@
       console.log($bestoverall)
     }
 
+    // Software Concept: Modularity 
     async function updateUsers() {
       const allUsers = await db.allDocs({
         include_docs:true
       });
 
       users = allUsers.rows.map(row => row.doc).filter(value => Object.keys(value).length !== 0);
-      
+  
     }
 
 
@@ -152,8 +156,6 @@
       align-items: center;
       justify-content: center;
     }
-
-
   
   </style>
   

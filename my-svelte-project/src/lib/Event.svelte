@@ -1,6 +1,5 @@
 <script>
-    let name = ""
-    let notes = ""
+    // Software Concept: Reusable components from Carbon Components
     import { Button, RadioButton, RadioButtonGroup } from "carbon-components-svelte";
     import { besttimes } from '../store.js'
 
@@ -13,6 +12,8 @@
     /* 
         Only events that already exist will have extended props (for availability types),
         so we can use it to tell if this is a new or existing event. 
+
+        Software concept: Event blocks
     */
     let editing = !!eventObj.extendedProps
     let startTime = eventObj.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
@@ -27,7 +28,9 @@
 
     /** Dispatch event on click outside of node */
     function clickOutside(node) {
+
     
+    // Software Concept: Svelte Reactivity 
     const handleClick = event => {
         if (node && !node.contains(event.target) && !event.defaultPrevented) {
         node.dispatchEvent(
@@ -35,7 +38,6 @@
         )
         }
     }
-
         document.addEventListener('click', handleClick, true);
     
     return {
@@ -44,7 +46,6 @@
         }
         }
     }
-
     const handleSubmit = () => {
         if (editing){
             editEvent({
@@ -56,7 +57,8 @@
             show = false
         } else {
             if (location && availabilityType && (enddate == startdate)) {
-                
+                // Software Concept: Modular, reusable components
+                // Availability Concept: Spatial rendering of times
                 addEvent({
                     ...eventObj, 
                     title: location, 
@@ -93,6 +95,7 @@
     <div id="eventbox" use:clickOutside on:click_outside={handleClickOutside}>
         {startdate} from {startTime} to {endTime}<br>
         <br/>
+        <!-- Availability Concept: Preferences, helping users find the most optimal time and place -->
         <div class="grid-container">
             <div class="grid-child purple">
                 <RadioButtonGroup bind:selected={location} legendText="Location">
@@ -108,6 +111,7 @@
                 </RadioButtonGroup>
             </div>
             <div>
+                <!-- Availability Concept: Event Modification -->
                 <Button kind="primary" on:click={() => handleSubmit()}>Add Event</Button>
                 <Button kind="secondary" on:click={() => {if (!editing) {handleCancel()}; show = false}}>Cancel</Button>
                 {#if editing}

@@ -1,10 +1,18 @@
+<!-- Availability Concept: Identification/Anonymity: Allowing users to identify themselves 
+(or use a pseudonym) so we can track preferences. -->
 <script>
     import { Button, TextInput, Dropdown } from "carbon-components-svelte";
+
+    // Software Concept: Routing, enabling us to pass data and switch to other views 
     import { navigate } from 'svelte-routing'
+
+    // Concept: Data storage: Use of a unique, Svelte local miniature database here implemented as a "store"
     import { name, starttime } from '../store.js'
 
     let userName;
     let error = false
+    
+    // Ensuring users put in valid usernames
     const validateInput = () => {
         if (!userName) {
             error = true
@@ -25,6 +33,7 @@
             <div class="text">Welcome! Enter your name and timezone below:</div>
             <TextInput invalid={error} invalidText="Please enter a name" bind:value={userName} placeholder="Your name here..." />
             <br/>
+            <!-- Availability Concept: Time Zone Compatibility -->
             <Dropdown
                 size="sm"
                 titleText="Timezone"
